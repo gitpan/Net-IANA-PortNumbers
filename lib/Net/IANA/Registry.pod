@@ -1,0 +1,112 @@
+=pod
+
+=head1 NAME
+
+Net::IANA::Registry - optimized representation of IANA's port number registry
+
+=head1 SYNOPSIS
+
+  use Net::IANA::Registry;
+
+  my $registry = Net::IANA::Registry->new();
+
+  $registry->last_updated(); # returns '2003-06-25'
+  $registry->load(); # returns an arrayref of port objects
+  # returns a new registry module as a string
+  $registry->generate_new_registry_module('MyRegistry');
+  $registry->sep(); # returns '/' on UNIX os's
+  $registry->get_registry; # returns a new registry as a string
+  $registry->install_new_registry(); # installs a new default registry
+
+  print "There is a newer registry available from IANA\n" if
+    $registry->expired(), "\n";
+
+=head1 DESCRIPTION
+
+Net::IANA::PortNumbers uses the official IANA port number registry at the
+protocol/number assignments directory located at:
+
+http://www.iana.org/assignments/port-numbers
+
+This module represents an optimized, pipe-delimited representation of IANA's
+port number registry.
+
+=head1 METHODS
+
+=over 4
+
+=item * B<new>
+
+Constructor. Returns a registry object. Accepts no arguments.
+
+=item * B<last_updated>
+
+This object method takes no arguments. Net::IANA::PortNumbers' internal
+database is primed from the IANA port registry. This method returns the date
+that the IANA port registry stated that it was last updated. Note that this is
+not necessarily the same date that Net::IANA::PortNumbers distribution was last
+updated.
+
+=item * B<sep>
+
+Returns the filesystem path separator for the current OS. Takes no arguments.
+On UNIX this would return '/'.
+
+=item * B<load>
+
+Returns an arrayref of port objects. Takes no arguments.
+
+=item * B<generate_new_registry_module>
+
+Generates a new registry module, based on the data from a presumably newer
+version of the ports file. Takes one mandatory argument: the package name that
+the new registry module should use. Returns the new module registry as a string.
+The new module can be used with the Net::IANA::PortNumbers constructor, i.e.:
+my $iana = Net::IANA::PortNumbers(MyRegistry->new());
+
+=item * B<expired>
+
+Determines if a newer port list registry is available from IANA. Returns 0 if
+your registry is the latest available, otherwise returns 0. Takes no args.
+
+=item * B<get_registry>
+
+Goes out and retrieves a new registry "over the wire". Returns the new registry
+as a string. Takes no arguments.
+
+=item * B<install_new_registry>
+
+Goes out and retrieves a new registry "over the wire", via get_registry(), and
+then installs the new default registry. You probably want to do this as root if
+you want it to be installed system-wide. Takes no arguments. Be advised that
+this new registry will be over-written during re-installations of this
+distribution. If you don't want this behavior then
+generate_new_registry_module, save the returned string to disk as the new
+registry module, and reference it in the Net::IANA::PortNumbers constructor.
+
+
+=back
+
+=head1 COPYRIGHT
+
+Copyright (c) 2003 Adam J. Foxson. All rights reserved.
+
+=head1 LICENSE
+
+See COPYING
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<perl>
+
+=item * L<Net::servent>
+
+=back
+
+=head1 AUTHOR
+
+Adam J. Foxson E<lt>F<afoxson@pobox.com>E<gt>.
+
+=cut

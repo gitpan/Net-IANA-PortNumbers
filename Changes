@@ -1,4 +1,7 @@
 Revision history for Perl extension Net::IANA::PortNumbers.
 
+1.15 Mon Jul 07 04:55:23 2003
+     - initial beta release; interface has completely changed (see POD)
+
 1.6  Sat Jun 07 03:02:08 2003
-     - initial release
+     - initial alpha release

@@ -5,6 +5,7 @@ INSTALLATION
 
 To install this distribution type the following:
 
+    cpansign -v (optional; requires Module::Signature to be installed)
     perl Makefile.PL
     make
     make test

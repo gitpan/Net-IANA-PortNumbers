@@ -1,23 +1,27 @@
-# $Id: Makefile.PL,v 1.2 2003/06/07 06:54:35 afoxson Exp $
-# $Revision: 1.2 $
+# $Id: Makefile.PL,v 1.6 2003/07/06 11:17:11 afoxson Exp $
+# $Revision: 1.6 $
 
-use ExtUtils::MakeMaker;
+use inc::Module::Install;
 
-WriteMakefile(
-	'NAME' => 'Net::IANA::PortNumbers',
-	'PM' => {
-		'lib/Net/IANA/PortNumbers.pm' => '$(INST_LIBDIR)/PortNumbers.pm',
-		'lib/Net/IANA/PortNumber.pm' => '$(INST_LIBDIR)/PortNumber.pm',
-	},
-	'VERSION_FROM' => 'lib/Net/IANA/PortNumbers.pm',
-	'dist' => {
-		'COMPRESS' => 'gzip --best',
-		'SUFFIX' => '.gz',
-	},
-	(   
-		$] >= 5.005 ?  (   
-			ABSTRACT_FROM => 'lib/Net/IANA/PortNumbers.pm',
-			AUTHOR => 'Adam J. Foxson <afoxson@pobox.com>',
-		) : ()
-	),
+name('Net-IANA-PortNumbers');
+version_from('lib/Net/IANA/PortNumbers.pm');
+abstract('translate ports to services and vice versa');
+author('Adam J. Foxson <afoxson@pobox.com>');
+license('gpl');
+
+features(
+	'Support for the IANA registry "over-the-wire"' => [
+		-default => 0,
+		recommends('LWP::Simple'),
+		recommends('File::Temp'),
+		recommends('File::Spec'),
+	],
 );
+
+include('ExtUtils::AutoInstall');
+check_nmake();
+auto_install();
+
+&Meta->write;
+&Build->write if lc($0) eq 'build.pl';
+&Makefile->write if lc($0) eq 'makefile.pl';

@@ -1,0 +1,14 @@
+name: Net-IANA-PortNumbers
+version: 1.15
+abstract: translate ports to services and vice versa
+author: Adam J. Foxson <afoxson@pobox.com>
+license: gpl
+distribution_type: module
+recommends:
+  LWP::Simple: 0
+  File::Temp: 0
+  File::Spec: 0
+private:
+  directory:
+    - inc
+generated_by: Module::Install version 0.21

@@ -4,59 +4,60 @@ NAME
 SYNOPSIS
       use Net::IANA::PortNumbers;
 
-      my $iana = Net::IANA::PortNumbers->new();
+      my $iana = Net::IANA::PortNumbers->new(); # or: ->new(MyRegistry->new());
 
-      my $svc2port = $iana->svc2port('http', 'tcp') || 'No such service';
-      my $svc2desc = $iana->svc2desc('http', 'tcp') || 'No such service';
-      my $port2svc = $iana->port2svc(53, 'udp') || 'Unassigned port';
-      my $port2desc = $iana->port2desc(53, 'udp') || 'Unassigned port';
+      ($iana->port(22, 'tcp'))[0]->svc; # returns 'ssh'
+      ($iana->port(22, 'tcp'))[0]->port; # returns 22
+      ($iana->port(22, 'tcp'))[0]->desc; # returns 'SSH Remote Login Protocol'
+      ($iana->port(22, 'tcp'))[0]->proto; # returns 'tcp'
+      ($iana->port(22, 'tcp'))[0]->range; # returns 'Well known'
 
-      print @{$svc2port}, "\n";  # 80
-      print $svc2desc, "\n";  # World Wide Web HTTP
-      print $port2svc, "\n";  # domain
-      print $port2desc, "\n"; # Domain Name Server
+      ($iana->svc('ssh', 'tcp'))[0]->svc; # returns 'ssh'
+      ($iana->svc('ssh', 'tcp'))[0]->port; # returns 22
+      ($iana->svc('ssh', 'tcp'))[0]->desc; # returns 'SSH Remote Login Protocol'
+      ($iana->svc('ssh', 'tcp'))[0]->proto; # returns 'tcp'
+      ($iana->svc('ssh', 'tcp'))[0]->range; # returns 'Well known'
+
+      # prints: ident auth
+      for my $port ($iana->port(113, 'tcp')) {
+          print $port->svc(), " ";
+      }
+
+      # prints: 6000 6001 6002 6003 6004 6005 6006 6007 6008 6009 6010 6011 6012
+      # 6013 6014 6015 6016 6017 6018 6019 6020 6021 6022 6023 6024 6025 6026
+      # 6027 6028 6029 6030 6031 6032 6033 6034 6035 6036 6037 6038 6039 6040
+      # 6041 6042 6043 6044 6045 6046 6047 6048 6049 6050 6051 6052 6053 6054
+      # 6055 6056 6057 6058 6059 6060 6061
+      for my $service ($iana->svc('x11', 'tcp')) {
+          print $service->port(), " ";
+      }
+
+      # prints: ISO Transport Class 2 Non-Control over TCP, ISO Transport Class
+      # 2 Non-Control over UDP
+      print join ', ', map {$_->desc} $iana->port(399);
+
+      # prints: Management Utility, Compression Process
+      print join ', ', map {$_->desc} $iana->svc('compressnet', 'udp');
 
 DESCRIPTION
-    Net::IANA::PortNumbers uses the official IANA port number registry at
-    the protocol/number assignments directory located at:
-
-    http://www.iana.org/assignments/port-numbers
-
-    Net::IANA::PortNumbers translates port numbers to services and
-    descriptions, and services to port numbers and descriptions.
+    Net::IANA::PortNumbers translates port numbers and services to ports,
+    services, descriptions, protocols, and ranges.
 
 METHODS
     * new
         This constructor returns a Net::IANA::PortNumbers object. It accepts
-        no arguments and will initialize its internal database.
+        an optional parameter of a registry object, otherwise it defaults to
+        using Net::IANA::Registry.
 
-    * last_updated
-        This object method takes no arguments. Net::IANA::PortNumbers'
-        internal database is primed from the IANA port registry. This method
-        returns the date that the IANA port registry stated that it was last
-        updated. Note that this is not necessarily the same date that
-        Net::IANA::PortNumbers was last updated.
+    * svc
+        Takes one mandatory argument of a service, i.e., 'ssh', and one
+        optional argument of a protocol, i.e., 'tcp'. It will returns a list
+        of port objects that match.
 
-    * svc2port
-        This object method takes two mandatory arguments of a service and a
-        protocol. It will return an array reference. It will either be empty
-        or populated depending on if the service exists. The method is also
-        aliased to svc2ports.
-
-    * svc2desc
-        This object method takes two mandatory arguments of a service and a
-        protocol. It will return a service description or undefined if there
-        is no such service.
-
-    * port2svc
-        This object method takes two mandatory arguments of a port and a
-        protocol. It will return a service or undefined if the port is
-        unassigned.
-
-    * port2desc
-        This object method takes two mandatory arguments of a port and a
-        protocol. It will return a service description or undefined if the
-        port is unassigned.
+    * port
+        Takes one mandatory argument of a port, i.e., 22, and one optional
+        argument of a protocol, i.e., 'tcp'. It will returns a list of port
+        objects that match.
 
 COPYRIGHT
     Copyright (c) 2003 Adam J. Foxson. All rights reserved.
@@ -64,13 +65,10 @@ COPYRIGHT
 LICENSE
     See COPYING
 
-CAVEATS
-    See CAVEATS
-
 SEE ALSO
-    * perl
-    * Net::servent
-
+    * the perl manpage
+    * the Net::servent manpage
 AUTHOR
-    Adam J. Foxson
+    Adam J. Foxson <afoxson@pobox.com>, with special thanks to Kurt
+    Starsinic <kstar@cpan.org> for many suggestions.
 
