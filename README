@@ -1,0 +1,76 @@
+NAME
+    Net::IANA::PortNumbers - translate ports to services and vice versa
+
+SYNOPSIS
+      use Net::IANA::PortNumbers;
+
+      my $iana = Net::IANA::PortNumbers->new();
+
+      my $svc2port = $iana->svc2port('http', 'tcp') || 'No such service';
+      my $svc2desc = $iana->svc2desc('http', 'tcp') || 'No such service';
+      my $port2svc = $iana->port2svc(53, 'udp') || 'Unassigned port';
+      my $port2desc = $iana->port2desc(53, 'udp') || 'Unassigned port';
+
+      print @{$svc2port}, "\n";  # 80
+      print $svc2desc, "\n";  # World Wide Web HTTP
+      print $port2svc, "\n";  # domain
+      print $port2desc, "\n"; # Domain Name Server
+
+DESCRIPTION
+    Net::IANA::PortNumbers uses the official IANA port number registry at
+    the protocol/number assignments directory located at:
+
+    http://www.iana.org/assignments/port-numbers
+
+    Net::IANA::PortNumbers translates port numbers to services and
+    descriptions, and services to port numbers and descriptions.
+
+METHODS
+    * new
+        This constructor returns a Net::IANA::PortNumbers object. It accepts
+        no arguments and will initialize its internal database.
+
+    * last_updated
+        This object method takes no arguments. Net::IANA::PortNumbers'
+        internal database is primed from the IANA port registry. This method
+        returns the date that the IANA port registry stated that it was last
+        updated. Note that this is not necessarily the same date that
+        Net::IANA::PortNumbers was last updated.
+
+    * svc2port
+        This object method takes two mandatory arguments of a service and a
+        protocol. It will return an array reference. It will either be empty
+        or populated depending on if the service exists. The method is also
+        aliased to svc2ports.
+
+    * svc2desc
+        This object method takes two mandatory arguments of a service and a
+        protocol. It will return a service description or undefined if there
+        is no such service.
+
+    * port2svc
+        This object method takes two mandatory arguments of a port and a
+        protocol. It will return a service or undefined if the port is
+        unassigned.
+
+    * port2desc
+        This object method takes two mandatory arguments of a port and a
+        protocol. It will return a service description or undefined if the
+        port is unassigned.
+
+COPYRIGHT
+    Copyright (c) 2003 Adam J. Foxson. All rights reserved.
+
+LICENSE
+    See COPYING
+
+CAVEATS
+    See CAVEATS
+
+SEE ALSO
+    * perl
+    * Net::servent
+
+AUTHOR
+    Adam J. Foxson
+

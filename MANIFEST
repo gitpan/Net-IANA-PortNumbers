@@ -1,0 +1,14 @@
+CAVEATS
+COPYING
+Changes
+INSTALL
+MANIFEST			This list of files
+Makefile.PL
+README
+lib/Net/IANA/PortNumber.pm
+lib/Net/IANA/PortNumbers.pm
+t/last_updated.t
+t/port2desc.t
+t/port2svc.t
+t/svc2desc.t
+t/svc2port.t

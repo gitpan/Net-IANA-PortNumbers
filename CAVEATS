@@ -1,0 +1,21 @@
+The below services have been ommitted from the Net::IANA::PortNumbers database
+due to missing associated protocols. IANA has been emailed about these port
+registry irregularities, and as soon as it is clear to which protocols the
+below services are associated they will be included in Net::IANA::PortNumbers.
+
+active-net		3322-3325	Active Networks
+satvid-datalnk	3367-3371	Satellite Video Data Link
+vrml-multi-use	4200-4299	VRML Multi User Systems
+info-aps		6400
+info-was		6401
+info-eventsvr	6402
+info-cachesvr	6403
+info-filesvr	6404
+info-pagesvr	6405
+info-processvr	6406
+reserved1		6407
+reserved2		6408
+reserved3		6409
+reserved4		6410
+swx				7300-7390	The Swiss Exchange
+flex-lm			27000-27009	FLEX LM (1-10)
