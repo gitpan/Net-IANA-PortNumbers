@@ -1,5 +1,13 @@
 Revision history for Perl extension Net::IANA::PortNumbers.
 
+1.16 Thu Jul 10 01:58:53 2003
+     - Add a MANIFEST.SKIP
+     - Enhanced portability of Net::IANA::Registry's install_new_registry()
+     - Updated included IANA registry to version released on 2003-07-09
+     - Added iana_last_updated() to Net::IANA::Registry
+     - Fixed a bug with Net::IANA::Registry's expired()
+     - Fixed a documentation bug on line 22 of lib/Net/IANA/Registry.pod
+
 1.15 Mon Jul 07 04:55:23 2003
      - initial beta release; interface has completely changed (see POD)
 

@@ -1,5 +1,5 @@
-# $Id: Registry.pm,v 1.10 2003/07/07 08:12:16 afoxson Exp $
-# $Revision: 1.10 $
+# $Id: Registry.pm,v 1.13 2003/07/10 05:36:01 afoxson Exp $
+# $Revision: 1.13 $
 
 # Net::IANA::Registry - optimized representation of IANA's port number registry
 # Copyright (c) 2003 Adam J. Foxson <afoxson@pobox.com>
@@ -23,7 +23,7 @@ use ExtUtils::Install;
 use File::Basename;
 use Net::IANA::PortNumber;
 
-($VERSION) = '$Revision: 1.10 $' =~ /\s+(\d+\.\d+)\s+/;
+($VERSION) = '$Revision: 1.13 $' =~ /\s+(\d+\.\d+)\s+/;
 
 local $^W;
 
@@ -31,7 +31,7 @@ sub new {
 	my $type  = shift;
 	my $class = ref($type) || $type;
 	my $self  = {
-		last_updated => '2003-06-26',
+		last_updated => '2003-07-09',
 		registry => undef,
 	};
 
@@ -45,18 +45,6 @@ sub new {
 sub last_updated {
 	my $self = shift;
 	return $self->{last_updated};
-}
-
-sub sep {
-	unless (eval{require File::Spec}) {
-		croak __PACKAGE__ . "->sep(): Requires File::Spec";
-	}
-
-	my $self = shift;
-	my $path = File::Spec->catfile('a', 'b');
-	my ($sep) = $path =~ /^a(.)b$/;
-
-	return $sep;
 }
 
 # parse through the optimized representation of IANA's port listing and return
@@ -200,24 +188,32 @@ sub get_registry {
 	return $self->{registry} = $registry;
 }
 
-sub expired {
+sub iana_last_updated {
 	my $self = shift;
 	my $registry = $self->get_registry();
 
 	if ($registry =~ /\(last\supdated\s(\d{4}-\d{2}-\d{2})\)/) {
-		my $current_last_updated = $self->last_updated;
-		my $actual_last_updated = $1;
-
-		if ($current_last_updated eq $actual_last_updated) {
-			return 0;
-		}
-		else {
-			return 1;
-		}
+		return $1;
 	}
 	else {
 		die __PACKAGE__ . "->expired(): Couldn't find last updated string " .
 			"in the port list";
+	}
+}
+
+sub expired {
+	my $self = shift;
+	my $current_last_updated = $self->last_updated;
+	my $actual_last_updated = $self->iana_last_updated;
+
+	$current_last_updated =~ s/-//g;
+	$actual_last_updated =~ s/-//g;
+
+	if ($actual_last_updated > $current_last_updated) {
+		return 1;
+	}
+	else {
+		return 0;
 	}
 }
 
@@ -234,10 +230,14 @@ sub install_new_registry {
 	my $tmpdir = File::Temp::tempdir(CLEANUP => 1);
 	my $regdir = dirname($INC{'Net/IANA/Registry.pm'});
 	my $registry = $self->generate_new_registry_module('Net::IANA::Registry');
-	my $sep = $self->sep;
 
-	open DIR, ">$tmpdir${sep}Registry.pm" or die __PACKAGE__ .
-		"->install_new_registry(): $!";
+	unless (eval{require File::Spec}) {
+		croak __PACKAGE__ . "->install_new_registry(): Requires File::Spec";
+	}
+
+	my $file = File::Spec->catfile($tmpdir, 'Registry.pm');
+
+	open DIR, ">$file" or die __PACKAGE__ .  "->install_new_registry(): $!";
 	print DIR $registry;
 	close DIR or die __PACKAGE__ . "->install_new_registry(): $!";
 
@@ -6731,6 +6731,8 @@ zicom|3774|tcp|ZICOM
 zicom|3774|udp|ZICOM
 ispmmgr|3775|tcp|ISPM Manager Port
 ispmmgr|3775|udp|ISPM Manager Port
+dvcprov-port|3776|tcp|Device Provisioning Port
+dvcprov-port|3776|udp|Device Provisioning Port
 jibe-eb|3777|tcp|Jibe EdgeBurst
 jibe-eb|3777|udp|Jibe EdgeBurst
 c-h-it-port|3778|tcp|Cutler-Hammer IT Port

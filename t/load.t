@@ -9,4 +9,4 @@ BEGIN { plan tests => 2 };
 
 my $registry = Net::IANA::Registry->new();
 ok(ref $registry, 'Net::IANA::Registry');
-ok(scalar @{$registry->load}, 8432);
+ok(scalar @{$registry->load}, 8434);

@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.22.
+signed via the Module::Signature module, version 0.24.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -15,10 +15,11 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 12549569098cbb0efa8a4aa91f5f38068791fe42 COPYING
-SHA1 476914b310dba45e42e6b7a92a8cc993dad0bb21 Changes
+SHA1 26723031b08ede5d29a1f9819fcd791f16210f40 Changes
 SHA1 6bbb18da47213451a7b88dfb0012f86824a2e652 INSTALL
-SHA1 582a2cbe65911c2c5e2af69dbd74e13e43dea2bb MANIFEST
-SHA1 eeb20c748ed5c8e7575381b360bbb826d18c7052 META.yml
+SHA1 3c0cf444b85aff3ad780b99653bea5a9dd98775e MANIFEST
+SHA1 18a059e368e23aa56ee406d5a54831d3761e29fa MANIFEST.SKIP
+SHA1 7bb771280b3cf0e617c42de5516e87990b34ff1c META.yml
 SHA1 6d29004e6bbae92692436cf151450f6fc83bb118 Makefile.PL
 SHA1 d4cacfa82678e6c425409bd20c1783d8b6dccba4 README
 SHA1 4bb3d8e54bd30d1fc9051972d3e166e91a273467 bin/mktests.pl
@@ -30,22 +31,21 @@ SHA1 25a98b3f87ff59247413bebb284ed2c1316c44c7 inc/Module/Install/Can.pm
 SHA1 b5e97ce114738b322214d46b704c512a4fc585a4 inc/Module/Install/Fetch.pm
 SHA1 b6cbcc40bb7d89a9694f13ab29b43e37ed3c9d49 inc/Module/Install/Include.pm
 SHA1 baf8c73e2914536fe0b110689772561eeb57ed3f inc/Module/Install/Makefile.pm
-SHA1 ea846404276aa17e4511c870aaa0d7ead4182e1e inc/Module/Install/Metadata.pm
+SHA1 660f0357eae873b1441f7b06209eaa56d04a554e inc/Module/Install/Metadata.pm
 SHA1 5d40574886f14c1b47dcabacba96864d63aa7afc inc/Module/Install/Win32.pm
 SHA1 a9eb1a5a720aed0131e6471ce373f1dc74c334f1 lib/Net/IANA/PortNumber.pm
-SHA1 c3ea3555d52cee30dfd1d7de0ad097b8fe2b164c lib/Net/IANA/PortNumbers.pm
-SHA1 5583668b20a2e507dad0ca3f0708f505842aa1cc lib/Net/IANA/Registry.pm
-SHA1 cb9b38dc1f169fbba252912f0610b7cff9f734e3 lib/Net/IANA/Registry.pod
+SHA1 288e06bbedf6313d40c7f32ce62eae50ef4bfd49 lib/Net/IANA/PortNumbers.pm
+SHA1 79f25c3d274262ecd42de364e6d13c5e30ec13a4 lib/Net/IANA/Registry.pm
+SHA1 ba5c3888c25d92295e6130231732c22d7321f079 lib/Net/IANA/Registry.pod
 SHA1 896d12123d51f910376552034fc77d6788f8ee4f t/0-signature.t
 SHA1 bbebeb0ef01672a47931fb8d846079481a622ab7 t/errors.t
-SHA1 d89c52f39598aeef701b7d186cb85d7620e64b45 t/last_updated.t
-SHA1 95140a90f22fd17cffb6937ffa0b4203394d9533 t/load.t
+SHA1 57cd52c5783aa54071e41a8324e20bf4dcc797c3 t/last_updated.t
+SHA1 4f7ce732589c1743eee0cadef3b1ec576fa437e0 t/load.t
 SHA1 eb17c749bdc90de1af21ac36eca26aac48bd1af6 t/port2desc.t
 SHA1 1e1d590a1c42d3f8f5583899c2483d0ca4a234e1 t/port2port.t
 SHA1 6df60970ab548c0ca98c1a3f0815c15c7282d110 t/port2proto.t
 SHA1 94e59c4862cceabaa60895bacafa4da7339b5768 t/port2range.t
 SHA1 e5b2f604e12ce185d3bc6746ab5d37298b51c576 t/port2svc.t
-SHA1 13ba8ad73ce91455acdfbe19ebc126471e8074a8 t/sep.t
 SHA1 4d6b1d46757a519d01d590faa35f2d12c021cbe9 t/svc2desc.t
 SHA1 900cf40d5877b3f72ea8dfa58adf0dc0f4a3877e t/svc2port.t
 SHA1 35bb0bebf3ecc9f70a396f62d889b8ff1d7f2063 t/svc2proto.t
@@ -54,7 +54,7 @@ SHA1 bfdc77e00ade6dddc44ad17c2406f93421990a97 t/svc2svc.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.2.1 (Darwin)
 
-iD8DBQE/CTVF5LPoF9AsmmsRAgznAKCwNtAgT+K+5BV/mOWbqc1ezzINlQCgiLgM
-9Hpdp50OaGIwzttWKei4vuk=
-=rClp
+iD8DBQE/DP5/5LPoF9AsmmsRAnvvAKC3F0CaVcw6zZKXZhFGlbZb6v4D0gCfaEhN
+AEEpBy9OjEJ0l6s3zxfS2nI=
+=Jxhb
 -----END PGP SIGNATURE-----

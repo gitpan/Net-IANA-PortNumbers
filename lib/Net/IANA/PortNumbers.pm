@@ -1,5 +1,5 @@
-# $Id: PortNumbers.pm,v 1.15 2003/07/07 08:51:27 afoxson Exp $
-# $Revision: 1.15 $
+# $Id: PortNumbers.pm,v 1.16 2003/07/10 05:11:22 afoxson Exp $
+# $Revision: 1.16 $
 
 # Net::IANA::PortNumbers - translate ports to services and vice versa
 # Copyright (c) 2003 Adam J. Foxson <afoxson@pobox.com>
@@ -20,7 +20,7 @@ use strict;
 use vars qw($VERSION $AUTOLOAD);
 use Carp;
 
-($VERSION) = '$Revision: 1.15 $' =~ /\s+(\d+\.\d+)\s+/;
+($VERSION) = '$Revision: 1.16 $' =~ /\s+(\d+\.\d+)\s+/;
 
 local $^W;
 

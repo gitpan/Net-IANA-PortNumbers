@@ -94,7 +94,7 @@ sub read {
 sub write {
     my $self = shift;
     return $self unless $self->admin;
-    return if -f "META.yml";
+    # return if -f "META.yml";
     warn "Creating META.yml\n";
     open META, "> META.yml" or die $!;
     print META $self->_dump;

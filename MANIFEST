@@ -2,6 +2,7 @@ COPYING
 Changes
 INSTALL
 MANIFEST			This list of files
+MANIFEST.SKIP
 META.yml
 Makefile.PL
 README
@@ -30,7 +31,6 @@ t/port2port.t
 t/port2proto.t
 t/port2range.t
 t/port2svc.t
-t/sep.t
 t/svc2desc.t
 t/svc2port.t
 t/svc2proto.t

@@ -10,16 +10,16 @@ Net::IANA::Registry - optimized representation of IANA's port number registry
 
   my $registry = Net::IANA::Registry->new();
 
-  $registry->last_updated(); # returns '2003-06-25'
+  $registry->last_updated(); # returns a date, e.g.: '2003-06-25'
+  $registry->iana_last_updated(); # returns a date, e.g.: '2003-06-25'
   $registry->load(); # returns an arrayref of port objects
   # returns a new registry module as a string
   $registry->generate_new_registry_module('MyRegistry');
-  $registry->sep(); # returns '/' on UNIX os's
   $registry->get_registry; # returns a new registry as a string
   $registry->install_new_registry(); # installs a new default registry
 
   print "There is a newer registry available from IANA\n" if
-    $registry->expired(), "\n";
+    $registry->expired();
 
 =head1 DESCRIPTION
 
@@ -47,10 +47,11 @@ that the IANA port registry stated that it was last updated. Note that this is
 not necessarily the same date that Net::IANA::PortNumbers distribution was last
 updated.
 
-=item * B<sep>
+=item * B<iana_last_updated>
 
-Returns the filesystem path separator for the current OS. Takes no arguments.
-On UNIX this would return '/'.
+This object method takes no arguments. This method returns the date that the
+actual IANA port registry at http://www.iana.org/assignments/port-numbers
+was last updated.
 
 =item * B<load>
 

@@ -8,4 +8,4 @@ BEGIN { plan tests => 2 };
 
 my $registry = Net::IANA::Registry->new();
 ok(ref $registry, 'Net::IANA::Registry');
-ok($registry->last_updated, '2003-06-26');
+ok($registry->last_updated, '2003-07-09');
